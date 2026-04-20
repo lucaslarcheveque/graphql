@@ -1,0 +1,363 @@
+/* ── Reset & tokens ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0d1117;
+  --surface:   #161b22;
+  --surface-2: #21262d;
+  --border:    #30363d;
+  --accent:    #58a6ff;
+  --accent-2:  #3fb950;
+  --danger:    #f85149;
+  --text:      #e6edf3;
+  --text-muted:#8b949e;
+  --radius:    10px;
+  --shadow:    0 4px 24px rgba(0,0,0,.4);
+  --font:      'Inter', system-ui, sans-serif;
+}
+
+html { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* ── Utilities ───────────────────────────────────────────────── */
+.hidden { display: none !important; }
+.view   { min-height: 100vh; }
+
+/* ── Login page ──────────────────────────────────────────────── */
+#login-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 0%, #112240 0%, var(--bg) 70%);
+}
+
+.login-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow);
+}
+
+.login-card .logo {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.login-card .logo h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+}
+
+.login-card .logo p {
+  color: var(--text-muted);
+  font-size: .85rem;
+  margin-top: .3rem;
+}
+
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: .82rem;
+  color: var(--text-muted);
+  margin-bottom: .4rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: .65rem .85rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: .95rem;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.form-group input:focus { border-color: var(--accent); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  padding: .65rem 1.4rem;
+  border-radius: 6px;
+  font-size: .95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity .2s, transform .1s;
+}
+
+.btn:active { transform: scale(.97); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn-primary { background: var(--accent); color: #0d1117; width: 100%; margin-top: .5rem; }
+.btn-primary:hover:not(:disabled) { opacity: .88; }
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: .85rem;
+}
+.btn-ghost:hover { color: var(--text); border-color: var(--text-muted); }
+
+.error-msg {
+  background: rgba(248,81,73,.12);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  border-radius: 6px;
+  padding: .6rem .85rem;
+  font-size: .88rem;
+  margin-top: .8rem;
+}
+
+/* ── Profile shell ───────────────────────────────────────────── */
+#profile-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .85rem 2rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar .brand {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.05rem;
+  letter-spacing: -.3px;
+}
+
+.profile-main {
+  max-width: 1100px;
+  width: 100%;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* ── Cards ───────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* ── Hero / identity ─────────────────────────────────────────── */
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, #a371f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0d1117;
+  flex-shrink: 0;
+}
+
+.identity-info h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.identity-info p {
+  color: var(--text-muted);
+  font-size: .9rem;
+  margin-top: .2rem;
+}
+
+/* ── Stat grid ───────────────────────────────────────────────── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.1rem 1.2rem;
+}
+
+.stat-card .stat-label {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--text-muted);
+  margin-bottom: .4rem;
+}
+
+.stat-card .stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-card .stat-sub {
+  font-size: .78rem;
+  color: var(--text-muted);
+  margin-top: .2rem;
+}
+
+/* ── Audit ratio bar ─────────────────────────────────────────── */
+.ratio-bar-wrap {
+  margin-top: .6rem;
+}
+
+.ratio-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: .82rem;
+  color: var(--text-muted);
+  margin-bottom: .4rem;
+}
+
+.ratio-bar {
+  height: 10px;
+  background: var(--surface-2);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.ratio-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  transition: width .8s ease;
+}
+
+/* ── SVG Graphs ──────────────────────────────────────────────── */
+.graphs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+  gap: 1.5rem;
+}
+
+.graph-container {
+  overflow: hidden;
+}
+
+.graph-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* axis / labels */
+.axis-line { stroke: var(--border); stroke-width: 1; }
+.axis-label { fill: var(--text-muted); font-size: 11px; font-family: var(--font); }
+.graph-title { fill: var(--text); font-size: 13px; font-weight: 600; font-family: var(--font); }
+
+/* XP line chart */
+.xp-area   { fill: url(#xpGrad); opacity: .35; }
+.xp-line   { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
+.xp-dot    { fill: var(--accent); }
+
+/* Bar chart */
+.bar-pass  { fill: var(--accent-2); }
+.bar-fail  { fill: var(--danger); opacity: .8; }
+
+/* Skills radar */
+.radar-bg   { fill: var(--surface-2); }
+.radar-web  { fill: var(--accent); fill-opacity: .25; stroke: var(--accent); stroke-width: 1.5; }
+.radar-axis { stroke: var(--border); stroke-width: 1; }
+.radar-label { fill: var(--text-muted); font-size: 10px; font-family: var(--font); text-anchor: middle; }
+
+/* Tooltip */
+.graph-tooltip {
+  position: absolute;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: .45rem .7rem;
+  font-size: .8rem;
+  color: var(--text);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+/* ── Skills list ─────────────────────────────────────────────── */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.skill-chip {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: .3rem .8rem;
+  font-size: .8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.skill-chip span { color: var(--accent); font-weight: 600; font-size: .75rem; }
+
+/* ── Loading skeleton ────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 50%, var(--surface-2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .graphs-grid { grid-template-columns: 1fr; }
+  .identity { flex-direction: column; text-align: center; }
+  .topbar { padding: .75rem 1rem; }
+  .profile-main { padding: 0 .85rem; }
+}
