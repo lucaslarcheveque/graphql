@@ -4,7 +4,7 @@ import {
   Q_USER, Q_XP_TRANSACTIONS, Q_XP_BY_PROJECT,
   Q_AUDIT_RATIO, Q_RESULTS, Q_SKILLS,
 } from './graphql.js';
-import { renderXPLineChart, renderXPBarChart, renderPassFailDonut } from './graphs.js';
+import { renderXPLineChart, renderXPBarChart } from './graphs.js';
 
 export async function renderProfile(onLogout) {
   const view = document.getElementById('profile-view');
@@ -124,7 +124,6 @@ export async function renderProfile(onLogout) {
         <div class="graphs-grid">
           <div class="graph-container card" id="graph-xp-line" style="padding:.5rem"></div>
           <div class="graph-container card" id="graph-xp-bar" style="padding:.5rem"></div>
-          <div class="graph-container card" id="graph-passfail" style="padding:.5rem; display:flex; justify-content:center"></div>
         </div>
       </div>
 
@@ -147,7 +146,6 @@ export async function renderProfile(onLogout) {
     // Render graphs
     renderXPLineChart(document.getElementById('graph-xp-line'), xpTx);
     renderXPBarChart(document.getElementById('graph-xp-bar'), xpByProject.transaction);
-    renderPassFailDonut(document.getElementById('graph-passfail'), results);
 
     // Skills chips
     const skillsEl = document.getElementById('skills-list');
