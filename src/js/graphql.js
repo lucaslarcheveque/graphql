@@ -34,12 +34,7 @@ export const Q_USER = `
 export const Q_XP_TRANSACTIONS = `
   {
     transaction(
-      where: {
-        type: { _eq: "xp" }
-        _and: [
-          { path: { _nlike: "%piscine%" } }
-        ]
-      }
+      where: { type: { _eq: "xp" } }
       order_by: { createdAt: asc }
     ) {
       id
@@ -57,7 +52,7 @@ export const Q_XP_TRANSACTIONS = `
 export const Q_XP_BY_PROJECT = `
   {
     transaction(
-      where: { type: { _eq: "xp" } _and: [{ path: { _nlike: "%piscine%" } }] }
+      where: { type: { _eq: "xp" } }
       order_by: { amount: desc }
       limit: 15
     ) {
