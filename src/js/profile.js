@@ -157,6 +157,11 @@ export async function renderProfile(onLogout) {
     }
 
   } catch (err) {
+    if (err.message.includes('JWTExpired') || err.message.includes('JWT')) {
+      logout();
+      onLogout();
+      return;
+    }
     console.error(err);
     document.getElementById('profile-content').innerHTML = `
       <div class="card" style="color:var(--danger)">

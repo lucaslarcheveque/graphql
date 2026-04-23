@@ -27,8 +27,19 @@ export function getToken() {
   return localStorage.getItem(TOKEN_KEY);
 }
 
+export function isTokenExpired() {
+  const token = getToken();
+  if (!token) return true;
+  try {
+    const { exp } = JSON.parse(atob(token.split('.')[1]));
+    return exp ? Date.now() / 1000 > exp : false;
+  } catch {
+    return true;
+  }
+}
+
 export function isLoggedIn() {
-  return !!getToken();
+  return !!getToken() && !isTokenExpired();
 }
 
 export function getUserIdFromToken() {
